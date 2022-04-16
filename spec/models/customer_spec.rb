@@ -1,5 +1,8 @@
 require 'rails_helper'
+require 'test_helper'
 
 RSpec.describe Customer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validation" do
+    it { should validate_presence_of(:email) }
+  end
 end
