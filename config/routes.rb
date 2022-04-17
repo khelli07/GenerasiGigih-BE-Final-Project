@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   get 'food/', to: 'food#index'
   post 'food/new', to: 'food#new'
 
+  post 'food/delete', to: 'food#delete'
   get 'food/:id', to: 'food#show'
   get 'food/edit/:id', to: 'food#edit'
-  post 'food/delete', to: 'food#delete'
   
   resources :category 
   get 'category/', to: 'category#index'
-  get 'category/new', to: 'category#new'
+  post 'category/new', to: 'category#new'
   get 'category/edit/:id', to: 'category#edit'
   
   resources :customer
@@ -20,18 +20,17 @@ Rails.application.routes.draw do
   post 'customer/delete', to: 'customer#delete'
 
   resources :order_detail 
-  get 'order/:order_id/order_detail/new', to: 'order_detail#new'
-  get 'order/:order_id/order_detail/edit/:id', to: 'order_detail#edit'
-  patch 'order/:order_id/order_detail/:id', to: 'order_detail#update'
-  post 'order/:order_id/order_detail/delete', to: 'order_detail#delete'
+  post 'order_detail/new', to: 'order_detail#new'
+  get 'order_detail/edit/:id', to: 'order_detail#edit'
+  patch 'order_detail/', to: 'order_detail#update'
+  post 'order_detail/delete', to: 'order_detail#delete'
   
   resources :order 
   get 'order/', to: 'order#index'
-  get 'order/new', to: 'order#new'
+  post 'order/new', to: 'order#new'
   
+  post 'order/delete', to: 'order#delete'
   get 'order/:id', to: 'order#show'
-  get 'order/edit/:id', to: 'order#edit'
-  get 'order/delete', to: 'order#delete'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

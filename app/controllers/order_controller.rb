@@ -3,31 +3,24 @@ class OrderController < ApplicationController
   
   def index
     @orders = Order.all
-    @emails = []
-    @orders.each do |ord|
-      @emails.append(Customer.find(ord.customer_id).email) 
-    end 
   end
 
   def show
     @order = Order.find(params[:id])
+    @order.update(total_price: @order.calculate_price)
     @order_details = @order.get_details
-    @foods = []
-    @order_details.each do |od|
-      @foods.append(Food.find(od.food_id).name) 
-    end 
   end
 
   def new
     @customers = Customer.all
-    @order = Order.new
   end
 
   def create
     Order.reset_pk_sequence
     OrderDetail.reset_pk_sequence
-    
-    @order = Order.create(order_params)
+
+    t = params[:time].to_datetime
+    @order = Order.create(order_date:t, status: params[:status], customer_id: params[:cid], total_price:0)
     
     redirect_to order_index_path
   end
@@ -51,7 +44,7 @@ class OrderController < ApplicationController
   end
 
   private
-  def order_params
-    params.require(:order).permit(:order_date, :status, :customer_email, :total_price)
+  def od_params
+    params.require(:order).permit(:order_date, :status, :customer_id, :total_price)
   end
 end

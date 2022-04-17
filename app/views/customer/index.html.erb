@@ -15,14 +15,13 @@
         <td><%= index + 1 %></td>
         <td><%= cust.email %></td>
         <td>
-          <form action="/customer/edit/<%= index + 1 %>" method="get">
-            <input type="hidden" name="id" value="<%= index + 1 %>">
+          <form action="/customer/edit/<%= cust.id %>" method="get">
             <input class="btn btn-primary" type="submit" value="Edit" >
           </form>
         </td>
         <td>
           <form action="customer/delete" method="post">
-            <input type="hidden" name="id" value="<%= index + 1 %>">
+            <input type="hidden" name="id" value="<%= cust.id %>">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </td>
@@ -30,7 +29,7 @@
     <% end %>
     </tbody>
   </table>
-  <form action="/customer/new" method="get">
+  <form action="/customer/new" method="post">
     <input class="btn btn-success" type="submit" value="Tambahkan customer">
   </form>
 </div>

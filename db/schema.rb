@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2022_04_16_063030) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.date "order_date"
+    t.datetime "order_date", precision: 6
     t.integer "status"
     t.integer "customer_id"
     t.float "total_price"

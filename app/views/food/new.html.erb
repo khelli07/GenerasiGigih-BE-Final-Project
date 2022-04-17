@@ -17,6 +17,7 @@
     <div class="col tag-container">
       <input style="border:1px solid lightgrey;" class="form-control" placeholder="Category">
     </div>
+    
   </div>
     
   <div class="form-row">
@@ -30,6 +31,10 @@
   <input id="hidden-tags" type="hidden" name="tags" value="">
   <input class="btn btn-success" type="submit" value="Selesai">
   <% end %>
+  
+  <form class="mt-2" action="/food" method="get">
+    <input class="btn btn-danger" type="submit" value="Back">
+  </form>
 </div>
 
 <%= javascript_include_tag 'category'%>

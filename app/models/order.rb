@@ -4,7 +4,18 @@ class Order < ApplicationRecord
   
   validates :customer_id, presence: true
 
-  def calculate_price()
+  # GETTER
+  def order_status
+    mapper = {"0" => "NEW", "1" => "PAID", "2" => "CANCELED"}
+    return mapper[self.status.to_s]
+  end
+  
+  def cust_email
+    cust = Customer.find(self.customer_id)
+    return cust.email
+  end 
+  
+  def calculate_price
     details = (OrderDetail
         .where(order_id: self.id)
         .pluck(:food_price, :qty)
@@ -15,16 +26,18 @@ class Order < ApplicationRecord
     return details.sum
   end
   
-  def get_details()
+  # DETAILS
+  def get_details
     details = OrderDetail.where(order_id: self.id)
     return details
   end
   
-  def delete_details()
-    det = OrdersDetails.find_by(order_id: self.id)
+  def delete_details
+    det = OrderDetail.find_by(order_id: self.id)
     while det != nil
       det.destroy
-      det = OrdersDetails.find_by(order_id: self.id)
+      det = OrderDetail.find_by(order_id: self.id)
     end
   end
+  
 end

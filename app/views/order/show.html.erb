@@ -1,5 +1,6 @@
 <div class="container-lg" style="margin-top:3%">
   <h1>Order ke-<%= @order.id %></h1>
+  <h4 class="mb-3">Total harga: <%= @order.total_price %></h4>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -15,18 +16,17 @@
     <% @order_details.each_with_index do |od, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= od.food_id %></td>
+        <td><%= od.food_name %></td>
         <td><%= od.food_price %></td>
         <td><%= od.qty %></td>
         <td>
-          <form action="/order/<%= @order.id %>/order_detail/edit/<%= index + 1 %>" method="get">
-            <input type="hidden" name="id" value="<%= index + 1 %>">
+          <form action="/order_detail/edit/<%= od.id %>" method="get">
             <input class="btn btn-primary" type="submit" value="Edit" >
           </form>
         </td>
         <td>
-          <form action="/order/<%= @order.id %>/order_detail/delete" method="post">
-            <input type="hidden" name="id" value="<%= index + 1 %>">
+          <form action="/order_detail/delete" method="post">
+            <input type="hidden" name="id" value="<%= od.id %>">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </td>
@@ -34,9 +34,12 @@
     <% end %>
     </tbody>
   </table>
-  <form action="/order/<%= @order.id %>/order_detail/new" method="get">
+  <form action="/order_detail/new" method="post">
+    <input type="hidden" name="order_id" value="<%= @order.id %>">
     <input class="btn btn-success" type="submit" value="Tambahkan order">
   </form>
-</div>
 
-      
+  <form class="mt-2" action="/order" method="get">
+    <input class="btn btn-danger" type="submit" value="Back">
+  </form>
+</div>
