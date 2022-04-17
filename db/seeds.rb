@@ -11,8 +11,8 @@ Category.create(name:"Italian")
 Category.create(name:"Rice")
 Category.create(name:"Drink")
 
-Food.create(name:"Es Milo", price:5.500)
-Food.create(name:"Nasi Goreng", price:15.000)
+Food.create(name:"Es Milo", price:5500)
+Food.create(name:"Nasi Goreng", price:15000)
 
 FoodCategory.create(food_id: 1, category_id:4)
 FoodCategory.create(food_id: 2, category_id:1)

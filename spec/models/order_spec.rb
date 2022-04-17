@@ -6,7 +6,7 @@ RSpec.describe Order, type: :model do
     it { should belong_to(:customer) }
   end
   
-  describe "basic validation" do
+  describe "validation" do
     it { should validate_presence_of(:customer_id) }
   end
 end

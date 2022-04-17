@@ -8,7 +8,7 @@ RSpec.describe Category, type: :model do
   end
   
   describe "validation" do
-    subject { Category.new(name: "Indonesian") }
     it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name) }     
   end
 end
