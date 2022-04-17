@@ -7,10 +7,6 @@ Rails.application.routes.draw do
   get 'order/new'
   get 'order/edit'
   get 'order/delete'
-  get 'customer/index'
-  get 'customer/new'
-  get 'customer/edit'
-  get 'customer/delete'
   get 'category/index'
   get 'category/new'
   get 'category/edit'
@@ -18,14 +14,20 @@ Rails.application.routes.draw do
 
   
   resources :food
-  
   get 'food/', to: 'food#index'
   post 'food/new', to: 'food#new'
 
-  get 'food/:id', to: 'food#show'
+  get 'food(/:id)', to: 'food#show', :constraints => { :id => /\d*/ }
   get 'food/edit/:id', to: 'food#edit'
   post 'food/delete', to: 'food#delete'
   
+  resources :customer
+  get 'customer', to: 'customer#index'
+  post 'customer/new', to: 'customer#new'
+  
+  get 'customer/edit/:id', to: 'customer#edit'
+  post 'customer/delete', to: 'customer#delete'
+
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
