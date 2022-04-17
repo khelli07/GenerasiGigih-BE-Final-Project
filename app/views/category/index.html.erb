@@ -1,2 +1,31 @@
-<h1>Category#index</h1>
-<p>Find me in app/views/category/index.html.erb</p>
+<div class="container-lg" style="margin-top:3%">
+  <h1>Kategori Menu di Warung Pak Gagah</h1>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Num</th>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @categories.each_with_index do |cat, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= cat.name %></td>
+        <td>
+          <form action="/category/edit/<%= index + 1 %>" method="get">
+            <input type="hidden" name="id" value="<%= index + 1 %>">
+            <input class="btn btn-primary" type="submit" value="Edit" >
+          </form>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <form action="/category/new" method="get">
+    <input class="btn btn-success" type="submit" value="Tambahkan kategori">
+  </form>
+</div>
+
+      

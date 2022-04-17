@@ -33,9 +33,6 @@ class CustomerController < ApplicationController
     redirect_to customer_index_path
   end
 
-  def error 
-  end
-  
   private
   def customer_params
     params.require(:customer).permit(:email)
