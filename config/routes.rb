@@ -15,11 +15,18 @@ Rails.application.routes.draw do
   get 'category/new'
   get 'category/edit'
   get 'category/delete'
-  get 'food/index'
-  get 'food/show'
-  get 'food/new'
-  get 'food/edit'
-  get 'food/delete'
+
+  
+  resources :food
+  
+  get 'food/', to: 'food#index'
+  post 'food/new', to: 'food#new'
+
+  get 'food/:id', to: 'food#show'
+  get 'food/edit/:id', to: 'food#edit'
+  post 'food/delete', to: 'food#delete'
+  
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

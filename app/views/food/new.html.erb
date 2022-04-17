@@ -1,2 +1,35 @@
-<h1>Food#new</h1>
-<p>Find me in app/views/food/new.html.erb</p>
+<div class="container" style="margin-top:13%; width:50%">
+  <h2 class="mb-3">Buat Menu Baru</h2>
+  <%= form_with(model: @food, url: food_index_path) do |form| %>
+  <div class="form-row mb-3">
+    
+    <div class="col">
+    <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
+    
+    <div class="col">
+    <%= form.text_field :price, class: "form-control",  placeholder: "Price" %>
+    </div>
+    
+    </div>
+    
+  <div class="form-row mb">
+    <div class="col tag-container">
+      <input style="border:1px solid lightgrey;" class="form-control" placeholder="Category">
+    </div>
+  </div>
+    
+  <div class="form-row">
+    <div class="col mt-1">
+    <p style="color:grey;">
+      Tekan escape untuk menambahkan kategori.
+    </p>
+    </div>
+  </div>
+
+  <input id="hidden-tags" type="hidden" name="tags" value="">
+  <input class="btn btn-success" type="submit" value="Selesai">
+  <% end %>
+</div>
+
+<%= javascript_include_tag 'category'%>

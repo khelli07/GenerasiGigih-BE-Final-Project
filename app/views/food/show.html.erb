@@ -1,2 +1,15 @@
-<h1>Food#show</h1>
-<p>Find me in app/views/food/show.html.erb</p>
+<div class="container-sm" id="<%= @food.id %>">
+  <div class="card mx-auto" style="width: 18rem; margin-top:10%">
+    <img src="https://images.tokopedia.net/img/cache/500-square/VqbcmM/2021/4/3/b54532de-04e2-4488-a311-c4b31dbe7f5e.jpg">
+    <div class="card-body">
+      <h2><%= @food.name %></h2>
+      <div class="card-text">
+        <strong>Price:</strong> <%= @food.price %>
+        <p style="color:grey;"><%= @categories %></p> 
+      </div>
+      <form action="/food" method="get">
+        <input class="btn btn-danger" type="submit" value="Back">
+      </form>
+    </div>
+  </div>
+</div>

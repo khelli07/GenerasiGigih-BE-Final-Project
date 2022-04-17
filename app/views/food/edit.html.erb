@@ -1,2 +1,16 @@
-<h1>Food#edit</h1>
-<p>Find me in app/views/food/edit.html.erb</p>
+<div class="container" style="margin-top:13%; width:50%">
+  <h2 class="mb-3">Editing <%= @food.name %></h2>
+  <%= form_with(model: @food, url: food_path) do |form| %>
+  <div class="form-row mb-3">
+    
+    <div class="col">
+    <%= form.text_field :name, class: "form-control", placeholder: @food.name %>
+    </div>
+    
+    <div class="col">
+    <%= form.text_field :price, class: "form-control",  placeholder: @food.name %>
+    </div>
+    
+  <input class="btn btn-success" type="submit" value="Selesai">
+  <% end %>
+</div>
