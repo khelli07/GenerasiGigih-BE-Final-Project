@@ -20,12 +20,15 @@ class OrderController < ApplicationController
     OrderDetail.reset_pk_sequence
 
     t = params[:time].to_datetime
-    @order = Order.create(order_date:t, status: params[:status], customer_id: params[:cid], total_price:0)
+    @order = Order.create(order_date:t, 
+      status: params[:status], 
+      customer_id: params[:cid], 
+      total_price:0
+    )
     
     redirect_to order_index_path
   end
 
-  # ??
   def edit
     @order = Order.find(params[:order_id])
   end

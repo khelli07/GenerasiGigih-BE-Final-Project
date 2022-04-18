@@ -17,7 +17,7 @@ class CustomerController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:customer_id])
   end
 
   def update
@@ -28,7 +28,7 @@ class CustomerController < ApplicationController
   end
 
   def delete
-    Customer.find(params[:id]).destroy
+    Customer.find(params[:customer_id]).destroy
     
     redirect_to customer_index_path
   end

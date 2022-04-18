@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   end
     
   resources :customer do
-    get 'customer/edit/:id', to: 'customer#edit'
-    get 'customer/new', to: 'customer#new'
-    post 'customer/delete', to: 'customer#delete'
-    get 'customer', to: 'customer#index'
+    get 'edit', to: 'customer#edit'
+    get 'new', to: 'customer#new'
+    post 'delete', to: 'customer#delete'
   end
 
   resources :order do

@@ -15,13 +15,12 @@
         <td><%= index + 1 %></td>
         <td><%= cust.email %></td>
         <td>
-          <form action="/customer/edit/<%= cust.id %>" method="get">
+          <form action="/customer/<%= cust.id %>/edit" method="get">
             <input class="btn btn-primary" type="submit" value="Edit" >
           </form>
         </td>
         <td>
-          <form action="customer/delete" method="post">
-            <input type="hidden" name="id" value="<%= cust.id %>">
+          <form action="customer/<%= cust.id %>/delete" method="post">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
         </td>
