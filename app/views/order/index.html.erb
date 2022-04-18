@@ -1,5 +1,6 @@
 <div class="container-lg" style="margin-top:3%">
   <h1>Pesanan Warung Pak Gagah</h1>
+  <h4 class="mb-3">Total pendapatan: <%= @total %></h4>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -7,6 +8,7 @@
         <th scope="col">Date</th>
         <th scope="col">Status</th>
         <th scope="col">Customer</th>
+        <th scope="col">Harga</th>
         <th scope="col"></th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -19,6 +21,7 @@
         <td><%= o.order_date %></td>
         <td><%= o.order_status %></td>
         <td><%= o.customer_email %></td>
+        <td><%= o.calculate_price %></td>
         <td>
           <form action="/order/<%= o.id %>" method="get">
             <input class="btn btn-primary" type="submit" value="Atur" >

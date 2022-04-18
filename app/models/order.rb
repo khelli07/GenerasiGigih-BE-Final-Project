@@ -36,10 +36,5 @@ class Order < ApplicationRecord
         })
     
     return details.sum
-  end
-
-  def update_price
-    self.update(total_price: self.calculate_price)
-  end
-  
+  end 
 end

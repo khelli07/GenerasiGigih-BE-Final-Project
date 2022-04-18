@@ -2,12 +2,16 @@ class OrderController < ApplicationController
   protect_from_forgery
   
   def index
-    @orders = Order.all
+    @orders = Order.order(:status).all
+    @total = (@orders.map {|o| o.calculate_price; }).sum
+    @orders.each do |o|
+      update(o) 
+    end
   end
 
   def show
     @order = Order.find(params[:id])
-    @order.update(total_price: @order.calculate_price)
+    update(@order)
     @order_details = @order.get_details
   end
 
@@ -50,5 +54,12 @@ class OrderController < ApplicationController
   private
   def od_params
     params.require(:order).permit(:order_date, :status, :customer_id, :total_price)
+  end
+
+  def update(order)
+    order.update(total_price: order.calculate_price)
+    if (order.order_date.strftime("%H").to_i >= 12 and order.status != 1)
+      order.update(status: 0)
+    end
   end
 end

@@ -28,7 +28,9 @@ class CustomerController < ApplicationController
   end
 
   def delete
-    Customer.find(params[:customer_id]).destroy
+    customer = Customer.find(params[:customer_id])
+    customer.delete_orders
+    customer.destroy
     
     redirect_to customer_index_path
   end

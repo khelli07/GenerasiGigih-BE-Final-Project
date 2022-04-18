@@ -7,7 +7,7 @@ class Customer < ApplicationRecord
     return self.email.split('@')[0].titleize
   end
   
-  def delete_orders()
+  def delete_orders
     order = Orders.find_by(customer_id: self.id)
     while order != nil
       order.delete_details()
