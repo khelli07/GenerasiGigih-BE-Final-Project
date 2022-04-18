@@ -1,7 +1,7 @@
 <div class="container" style="margin-top:13%; width:50%">
   <h2 class="mb-3">Editing Kategori <%= @category.name %></h2>
   
-  <%= form_with(model: @category, url: category_path) do |form| %>
+  <%= form_with(model: @category, url: category_path(@category.id)) do |form| %>
   <div class="form-row mb-3">
     <div class="col">
     <%= form.text_field :name, class: "form-control", placeholder: @category.name %>

@@ -17,7 +17,7 @@ class CategoryController < ApplicationController
   end
   
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find(params[:category_id])
   end
 
   def update
@@ -28,7 +28,9 @@ class CategoryController < ApplicationController
   end
 
   def delete
-    # Currently decided not allowing delete -> effect on cascade delete!
+    @category = Category.find(params[:category_id])
+    @category.delete_food_categories
+    @category.destroy
     redirect_to category_index_path
   end
 

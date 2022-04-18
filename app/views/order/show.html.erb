@@ -20,12 +20,12 @@
         <td><%= od.food_price %></td>
         <td><%= od.qty %></td>
         <td>
-          <form action="/order_detail/edit/<%= od.id %>" method="get">
+          <form action="<%= @order.id %>/order_detail/<%= od.id %>/edit" method="get">
             <input class="btn btn-primary" type="submit" value="Edit" >
           </form>
         </td>
         <td>
-          <form action="/order_detail/delete" method="post">
+          <form action="<%= @order.id %>/order_detail/<%= od.id %>/delete" method="post">
             <input type="hidden" name="id" value="<%= od.id %>">
             <input class="btn btn-danger" type="submit" value="Delete">
           </form>
@@ -36,7 +36,7 @@
   </table>
   <form action="/order_detail/new" method="post">
     <input type="hidden" name="order_id" value="<%= @order.id %>">
-    <input class="btn btn-success" type="submit" value="Tambahkan order">
+    <input class="btn btn-success" type="submit" value="Tambahkan detil">
   </form>
 
   <form class="mt-2" action="/order" method="get">

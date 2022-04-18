@@ -37,7 +37,7 @@ class FoodController < ApplicationController
   end
 
   def edit
-    @food = Food.find(params[:id])
+    @food = Food.find(params[:food_id])
   end
   
   def update
@@ -48,7 +48,7 @@ class FoodController < ApplicationController
   end
 
   def delete
-    @food = Food.find(params[:id])
+    @food = Food.find(params[:food_id])
     @food.delete_categories
     @food.destroy
     redirect_to food_index_path

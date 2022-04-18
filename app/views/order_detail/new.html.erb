@@ -4,7 +4,7 @@
   <div class="form-row mb-3">
     <div class="col">
       <label>Food Name</label>
-      <select name="fid" class="form-control">
+      <select name="food_id" class="form-control">
         <%= @foods.each do |f| %>
         <option value="<%= f.id %>"><%= f.name %></option>
         <% end %>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <input type="hidden" name="oid" value="<%= @order.id %>">
+  <input type="hidden" name="order_id" value="<%= @order.id %>">
   <input class="btn btn-success" type="submit" value="Selesai">
   <% end %>
 

@@ -10,38 +10,39 @@ class OrderDetailController < ApplicationController
   def create
     OrderDetail.reset_pk_sequence
     
-    fprice = Food.find(params[:fid]).price
-    OrderDetail.create(order_id:params[:oid], 
-      food_id:params[:fid], 
-      food_price:fprice, 
+    food_price = Food.find(params[:food_id]).price
+    
+    OrderDetail.create(order_id:params[:order_id], 
+      food_id:params[:food_id], 
+      food_price:food_price, 
       qty: params[:qty]
     )
 
-    redirect_to order_path(params[:oid])
+    redirect_to order_path(params[:order_id])
   end
 
   def edit
-    @order_detail = OrderDetail.find(params[:id])
+    @order_detail = OrderDetail.find(params[:order_detail_id])
     @foods = Food.all
   end
 
   def update
     @order_detail = OrderDetail.find(params[:id])
-    @order_detail.update(od_params)
+    @order_detail.update(order_detail_params)
     
     redirect_to order_path(params[:order_id])
   end
   
   def delete
-    od = OrderDetail.find(params[:id])
-    oid = od.order_id
-    od.destroy
+    order_detail = OrderDetail.find(params[:order_detail_id])
+    order_id = order_detail.order_id
+    order_detail.destroy
     
-    redirect_to order_path(oid)
+    redirect_to order_path(order_id)
   end
 
   private
-  def od_params
+  def order_detail_params
     params.require(:order_detail).permit(:order_id, :food_id, :food_price, :qty)
   end
 end

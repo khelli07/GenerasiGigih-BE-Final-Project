@@ -4,11 +4,12 @@ class Customer < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: true }, format: { with: /\w+@[A-Za-z]+\.[A-Za-z]+/ }
 
   def delete_orders()
-    ord = Orders.find_by(customer_id: self.id)
-    while ord != nil
-      ord.delete_details()
-      ord.destroy
-      ord = Orders.find_by(customer_id: self.id)
+    order = Orders.find_by(customer_id: self.id)
+    while order != nil
+      order.delete_details()
+      order.destroy
+      order = Orders.find_by(customer_id: self.id)
     end
   end
+  
 end

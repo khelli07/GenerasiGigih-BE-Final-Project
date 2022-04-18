@@ -1,6 +1,7 @@
 <div class="container" style="margin-top:13%; width:50%">
  <h2 class="mb-3">Editing menu untuk order ke-<%= @order_detail.order_id %></h2>
-  <%= form_with(model: @order_detail, url: order_detail_index_path) do |form| %>
+  <% link = "/order/#{@order_detail.order_id}/order_detail/#{@order_detail.order_id}"%>
+  <%= form_with(model: @order_detail, url:link) do |form| %>
   <div class="form-row mb-3">
 
     <div class="col">

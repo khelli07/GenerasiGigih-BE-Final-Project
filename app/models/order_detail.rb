@@ -7,4 +7,5 @@ class OrderDetail < ApplicationRecord
     food = Food.find(self.food_id)
     return food.name
   end
+  
 end

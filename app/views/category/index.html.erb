@@ -6,6 +6,7 @@
         <th scope="col">Num</th>
         <th scope="col">Name</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -14,15 +15,20 @@
         <td><%= index + 1 %></td>
         <td><%= cat.name %></td>
         <td>
-          <form action="/category/edit/<%= cat.id %>" method="get">
-            <input class="btn btn-primary" type="submit" placeholder="Edit" >
+          <form action="/category/<%= cat.id %>/edit" method="get">
+            <input class="btn btn-primary" type="submit" value="Edit" >
+          </form>
+        </td>
+        <td>
+          <form action="/category/<%= cat.id %>/delete" method="post">
+            <input class="btn btn-danger" type="submit" value="Delete" >
           </form>
         </td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <form action="/category/new" method="post">
+  <form action="/category/new" method="get">
     <input class="btn btn-success" type="submit" value="Tambahkan kategori">
   </form>
 </div>

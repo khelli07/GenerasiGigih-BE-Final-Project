@@ -1,36 +1,34 @@
 Rails.application.routes.draw do 
-  resources :food
-  get 'food/', to: 'food#index'
-  post 'food/new', to: 'food#new'
+  resources :food do
+    get 'edit', to: 'food#edit'
+    get 'new', to: 'food#new'
+    post 'delete', to: 'food#delete'
+  end
+  
+  resources :category do
+    get 'edit', to: 'category#edit'
+    get 'new', to: 'category#new'
+    post 'delete', to: 'category#delete'
+  end
+    
+  resources :customer do
+    get 'customer/edit/:id', to: 'customer#edit'
+    get 'customer/new', to: 'customer#new'
+    post 'customer/delete', to: 'customer#delete'
+    get 'customer', to: 'customer#index'
+  end
 
-  post 'food/delete', to: 'food#delete'
-  get 'food/:id', to: 'food#show'
-  get 'food/edit/:id', to: 'food#edit'
+  resources :order do
+    get 'new', to: 'order#new'
+    post 'delete', to: 'order#delete'
   
-  resources :category 
-  get 'category/', to: 'category#index'
-  post 'category/new', to: 'category#new'
-  get 'category/edit/:id', to: 'category#edit'
+    resources :order_detail do
+      get 'edit', to: 'order_detail#edit'
+      get 'new', to: 'order_detail#new'
+      post 'delete', to: 'order_detail#delete'
+    end
+  end
   
-  resources :customer
-  get 'customer', to: 'customer#index'
-  post 'customer/new', to: 'customer#new'
-  
-  get 'customer/edit/:id', to: 'customer#edit'
-  post 'customer/delete', to: 'customer#delete'
-
-  resources :order_detail 
-  post 'order_detail/new', to: 'order_detail#new'
-  get 'order_detail/edit/:id', to: 'order_detail#edit'
-  patch 'order_detail/', to: 'order_detail#update'
-  post 'order_detail/delete', to: 'order_detail#delete'
-  
-  resources :order 
-  get 'order/', to: 'order#index'
-  post 'order/new', to: 'order#new'
-  
-  post 'order/delete', to: 'order#delete'
-  get 'order/:id', to: 'order#show'
 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

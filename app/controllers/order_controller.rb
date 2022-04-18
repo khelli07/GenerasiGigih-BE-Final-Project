@@ -25,19 +25,20 @@ class OrderController < ApplicationController
     redirect_to order_index_path
   end
 
+  # ??
   def edit
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:order_id])
   end
   
   def update
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:order_id])
     @order.update(order_params)
     
     redirect_to order_index_path
   end
 
   def delete
-    @order = Order.find(params[:id])
+    @order = Order.find(params[:order_id])
     @order.delete_details
     @order.destroy
     redirect_to order_index_path
