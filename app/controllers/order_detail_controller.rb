@@ -8,17 +8,17 @@ class OrderDetailController < ApplicationController
   end
 
   def create
-    OrderDetail.reset_pk_sequence
-    
+    count = count_order(params[:order_id])
     food_price = Food.find(params[:food_id]).price
-    
-    OrderDetail.create(order_id:params[:order_id], 
+    @order_detail = OrderDetail.create(
+      order_id:params[:order_id], 
       food_id:params[:food_id], 
       food_price:food_price, 
       qty: params[:qty]
     )
 
-    redirect_to order_path(params[:order_id])
+    return render_invalid_request if count + 1 != count_order(params[:order_id])
+    return redirect_to order_path(params[:order_id])
   end
 
   def edit
@@ -34,9 +34,9 @@ class OrderDetailController < ApplicationController
   end
   
   def delete
-    order_detail = OrderDetail.find(params[:order_detail_id])
-    order_id = order_detail.order_id
-    order_detail.destroy
+    @order_detail  = OrderDetail.find(params[:order_detail_id])
+    order_id = @order_detail.order_id
+    @order_detail.destroy
     
     redirect_to order_path(order_id)
   end
@@ -44,5 +44,9 @@ class OrderDetailController < ApplicationController
   private
   def order_detail_params
     params.require(:order_detail).permit(:order_id, :food_id, :food_price, :qty)
+  end
+
+  def count_order(order_id)
+    OrderDetail.where(["order_id = ?", order_id])
   end
 end

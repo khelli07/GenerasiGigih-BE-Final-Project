@@ -10,9 +10,10 @@ class CustomerController < ApplicationController
   end
 
   def create
-    Customer.reset_pk_sequence
-    Customer.create(customer_params)
-
+    count = Customer.count
+    @customer = Customer.create(customer_params)
+    return render_invalid_request if count + 1 != Customer.count
+     
     redirect_to customer_index_path
   end
 
@@ -28,9 +29,9 @@ class CustomerController < ApplicationController
   end
 
   def delete
-    customer = Customer.find(params[:customer_id])
-    customer.delete_orders
-    customer.destroy
+    @customer = Customer.find(params[:customer_id])
+    @customer.delete_orders
+    @customer.destroy
     
     redirect_to customer_index_path
   end

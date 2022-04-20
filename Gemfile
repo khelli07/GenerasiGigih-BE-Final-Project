@@ -82,5 +82,3 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "rails-controller-testing"
 end
-
-gem 'activerecord-reset-pk-sequence'

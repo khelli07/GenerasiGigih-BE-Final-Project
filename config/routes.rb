@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'edit', to: 'category#edit'
     get 'new', to: 'category#new'
     post 'delete', to: 'category#delete'
+    patch 'update', to: 'category#update'
   end
     
   resources :customer do

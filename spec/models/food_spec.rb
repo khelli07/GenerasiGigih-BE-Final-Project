@@ -10,7 +10,7 @@ RSpec.describe 'Food', type: :model do
     it { should belong_to(:category) }
   end
   
-  describe "validation" do
+  describe "self validation" do
     subject { Food.new(name: 'Es Milo', price: 5500) }
 
     it { should validate_presence_of(:name) }

@@ -15,25 +15,15 @@ class FoodController < ApplicationController
   end
 
   def create
-    Food.reset_pk_sequence
-    FoodCategory.reset_pk_sequence
-    categories = []
-    params[:tags].split(",", -1).each do |fc|
-      c = Category.find_by(name: fc)
-      categories.append(c.id) if c != nil
-    end
+    categories = process_tags(params[:tags])
+    return render_invalid_request if (categories.length() == 0)
 
-    old_count = Food.count
-    if (categories.length() != 0)
-      @food = Food.create(food_params)
-      
-      if old_count + 1 == Food.count
-        @food.add_categories(categories)
-        return redirect_to food_index_path
-      end
-    end
-    
-    return self.render_invalid_request
+    count = Food.count
+    @food = Food.create(food_params)
+    return render_invalid_request if count + 1 != Food.count
+  
+    @food.add_categories(categories)
+    return redirect_to food_index_path
   end
 
   def edit
@@ -51,12 +41,22 @@ class FoodController < ApplicationController
     @food = Food.find(params[:food_id])
     @food.delete_categories
     @food.destroy
+    
     redirect_to food_index_path
   end
 
   private
   def food_params
     params.require(:food).permit(:name, :price)
+  end
+
+  def process_tags(tags)
+    categories = []
+    tags.split(",", -1).each do |c|
+      c = Category.find_by(name: c)
+      categories.append(c.id) if c != nil
+    end
+    return categories 
   end
   
 end

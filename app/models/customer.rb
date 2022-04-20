@@ -8,11 +8,11 @@ class Customer < ApplicationRecord
   end
   
   def delete_orders
-    order = Orders.find_by(customer_id: self.id)
+    order = Order.find_by(customer_id: self.id)
     while order != nil
       order.delete_details()
       order.destroy
-      order = Orders.find_by(customer_id: self.id)
+      order = Order.find_by(customer_id: self.id)
     end
   end
   

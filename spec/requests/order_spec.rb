@@ -1,31 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe "Orders", type: :request do
-  describe "GET /index" do
+  describe "GET index" do
+    it "render index template" do
+      get order_index_path
+      expect(:response).to render_template :index
+    end
+  end
+  
+  describe "GET show" do
     it "returns http success" do
-      get "/order/index"
-      expect(response).to have_http_status(:success)
+      order = FactoryBot.create(:order)
+      get order_path(order.id)
+      expect(:response).to render_template :show
     end
   end
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/order/show"
-      expect(response).to have_http_status(:success)
+  describe "GET new" do
+    it "render new template" do
+      get new_order_path
+      expect(:response).to render_template :new
     end
   end
 
-  describe "GET /new" do
-    it "returns http success" do
-      get "/order/new"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/order/edit"
-      expect(response).to have_http_status(:success)
+  describe "GET edit" do
+    it "render template edit" do
+      order = FactoryBot.create(:order)
+      get order_edit_path(order.id)
+      expect(:response).to render_template :edit
     end
   end
 
