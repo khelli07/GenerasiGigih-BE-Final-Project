@@ -7,7 +7,7 @@ class FoodController < ApplicationController
 
   def show
     @food = Food.find(params[:id])
-    @categories = @food.get_categories.join(', ')
+    @categories = @food.get_categories_name.join(', ')
   end
 
   def new
@@ -15,8 +15,8 @@ class FoodController < ApplicationController
   end
 
   def create
-    categories = process_tags(params[:tags])
-    return render_invalid_request if (categories.length() == 0)
+    categories = params[:categories]
+    return render_invalid_request if (categories.length() == 1)
 
     count = Food.count
     @food = Food.create(food_params)
@@ -47,16 +47,7 @@ class FoodController < ApplicationController
 
   private
   def food_params
-    params.require(:food).permit(:name, :price)
+    params.require(:food).permit(:name, :price, :category_ids)
   end
 
-  def process_tags(tags)
-    categories = []
-    tags.split(",", -1).each do |c|
-      c = Category.find_by(name: c)
-      categories.append(c.id) if c != nil
-    end
-    return categories 
-  end
-  
 end

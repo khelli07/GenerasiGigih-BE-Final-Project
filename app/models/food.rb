@@ -4,13 +4,13 @@ class Food < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: true }, length: { maximum: 150 }
   validates :price, presence: true, comparison: { greater_than_or_equal_to: 0.1 }
 
-  def get_categories
+  def get_categories_name
     categories = (FoodCategory
-        .where(food_id: self.id)
-        .pluck(:category_id)
-        .map {|c|
-          name = Category.find(c).name
-        })
+          .select(:category_id).distinct
+          .where(food_id: self.id)
+          .map {|c|
+            name = Category.find(c.category_id).name
+          })
     
     return categories
   end

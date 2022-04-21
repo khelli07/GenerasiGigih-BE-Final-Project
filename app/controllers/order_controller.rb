@@ -17,6 +17,7 @@ class OrderController < ApplicationController
 
   def new
     @order = Order.all
+    @customers = Customer.all
   end
 
   def create
@@ -32,17 +33,6 @@ class OrderController < ApplicationController
     redirect_to order_index_path
   end
 
-  # def edit
-  #   @order = Order.find(params[:order_id])
-  # end
-  
-  # def update
-  #   @order = Order.find(params[:order_id])
-  #   @order.update(order_params)
-    
-  #   redirect_to order_index_path
-  # end
-
   def delete
     @order = Order.find(params[:order_id])
     @order.delete_details
@@ -51,10 +41,6 @@ class OrderController < ApplicationController
   end
 
   private
-  # def order_params
-  #   params.require(:order).permit(:order_date, :status, :customer_id, :total_price)
-  # end
-
   def update_order(order)
     order.update(total_price: order.calculate_price)
     if (order.order_date.strftime("%H").to_i >= 17 and order.status != 1)

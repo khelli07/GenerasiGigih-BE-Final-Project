@@ -82,3 +82,6 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "rails-controller-testing"
 end
+
+gem "select2-rails"
+gem "jquery"

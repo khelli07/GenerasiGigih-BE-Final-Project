@@ -10,7 +10,8 @@ RSpec.describe "Orders", type: :request do
   
   describe "GET show" do
     it "returns http success" do
-      order = FactoryBot.create(:order)
+      customer = create(:customer)
+      order = create(:order)
       get order_path(order.id)
       expect(:response).to render_template :show
     end
@@ -18,24 +19,10 @@ RSpec.describe "Orders", type: :request do
 
   describe "GET new" do
     it "render new template" do
+      customer = create(:customer)
+      
       get new_order_path
       expect(:response).to render_template :new
     end
   end
-
-  describe "GET edit" do
-    it "render template edit" do
-      order = FactoryBot.create(:order)
-      get order_edit_path(order.id)
-      expect(:response).to render_template :edit
-    end
-  end
-
-  describe "GET /delete" do
-    it "returns http success" do
-      get "/order/delete"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end
