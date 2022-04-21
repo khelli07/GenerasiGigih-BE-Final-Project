@@ -1,4 +1,7 @@
 Rails.application.routes.draw do 
+  get 'landing/index'
+  get "/", to: "landing#index"
+  
   resources :food do
     get 'edit', to: 'food#edit'
     get 'new', to: 'food#new'

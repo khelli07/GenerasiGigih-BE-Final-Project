@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2022_04_16_063030) do
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id", "menu_id"], unique: true
-    t.index ["menu_id", "category_id"], unique: true
+    t.index "\"category_id\", \"menu_id\"", name: "index_categories_menus_on_category_id_and_menu_id"
+    t.index "\"menu_id\", \"category_id\"", name: "index_categories_menus_on_menu_id_and_category_id"
   end
 
   create_table "foods", force: :cascade do |t|

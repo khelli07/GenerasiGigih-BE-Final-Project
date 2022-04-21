@@ -29,11 +29,26 @@ RSpec.describe 'Food', type: :model do
       @category2 = Category.create(id: 2, name: "Dessert")
       @food = Food.create(id: 1, name: "Ice Cream", price: 7000)
       @fc1 = FoodCategory.create(food_id: 1, category_id: 1)
-      @fc2 = FoodCategory.create(food_id: 1, category_id: 2)
     end
 
     it "should be able to return its categories" do
-      expect(@food.get_categories_name).to include("Sweet", "Dessert")
+      expect(@food.get_categories_name).to include("Sweet")
     end 
+    
+    it "should be able to add categories" do
+      category3 = Category.create(id: 3, name: "Cold")
+      fc2 = FoodCategory.create(food_id: 1, category_id: 2)
+      fc3 = FoodCategory.create(food_id: 1, category_id: 3)
+      @food.add_categories([2, 3])
+    
+      expect(@food.get_categories_name).to include("Sweet", "Cold", "Dessert")
+    end
+
+    it "should be able to cascade delete" do
+      @food.delete_categories
+      @food.destroy
+      find = FoodCategory.find_by(food_id: 1)
+      expect(find).to be(nil)
+    end
   end 
 end

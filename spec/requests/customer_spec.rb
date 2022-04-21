@@ -39,4 +39,31 @@ RSpec.describe "Customers", type: :request do
     end
   end
 
+  describe 'PATCH #update' do
+    before :each do
+      @customer = FactoryBot.create(:customer)
+    end
+
+    context "with valid attributes" do
+      it "locates the requested @customer" do
+        patch "/customer/#{@customer.id}", 
+        params: { customer: attributes_for(:customer) }
+        expect(assigns(:customer)).to eq(@customer)
+      end
+
+      it "changes @customer's attributes" do
+        patch "/customer/#{@customer.id}", 
+        params: { customer: attributes_for(:customer, email: 'maria@gmail.com') }
+        @customer.reload
+        expect(@customer.email).to eq('maria@gmail.com')
+      end
+
+      it "redirect to customer index path" do
+        patch "/customer/#{@customer.id}", 
+        params: { customer: attributes_for(:customer) }
+        expect(response).to redirect_to customer_index_path
+      end
+    end
+  end
+
 end

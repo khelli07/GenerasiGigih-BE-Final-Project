@@ -19,7 +19,7 @@ class FoodController < ApplicationController
     return render_invalid_request if (categories.length() == 1)
 
     count = Food.count
-    @food = Food.create(food_params)
+    @food = Food.create(name: params[:name], price:params[:price])
     return render_invalid_request if count + 1 != Food.count
   
     @food.add_categories(categories)
@@ -47,7 +47,7 @@ class FoodController < ApplicationController
 
   private
   def food_params
-    params.require(:food).permit(:name, :price, :category_ids)
+    params.require(:food).permit(:name, :price)
   end
 
 end
