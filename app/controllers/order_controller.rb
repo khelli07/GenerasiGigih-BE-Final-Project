@@ -22,15 +22,17 @@ class OrderController < ApplicationController
 
   def create
     count = Order.count
-    t = params[:time].to_datetime
-    @order = Order.create(order_date:t, 
-      status: params[:status], 
-      customer_id: params[:cid], 
-      total_price:0
-    )
-    return render_invalid_request if count + 1 != Order.count
+    if params[:time] != "" and params[:time] != nil
+      t = params[:time].to_datetime
+      @order = Order.create(order_date:t, 
+        status: params[:status], 
+        customer_id: params[:cid], 
+        total_price:0
+      )
+    end
     
-    redirect_to order_index_path
+    return render_invalid_request if count + 1 != Order.count
+    return redirect_to order_index_path
   end
 
   def delete
@@ -50,7 +52,7 @@ class OrderController < ApplicationController
 
   def query(param_email, param_date)
     if ((param_email == nil and param_date == nil) or (param_email == "" and param_date == ""))
-      return Order.order(:status).all
+      return Order.all.order("status ASC, total_price ASC")
     end
     
     email = "%" + param_email + "%"
@@ -75,7 +77,7 @@ class OrderController < ApplicationController
          starts, ends))
     end
     
-    return order
+    return order.order("status ASC, total_price ASC")
   end
   
 end

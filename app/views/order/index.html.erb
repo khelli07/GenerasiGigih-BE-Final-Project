@@ -1,6 +1,7 @@
 <div class="container-lg" style="margin-top:3%">
   <h1>Pesanan Warung Pak Gagah</h1>
   <h4 class="mb-3">Total pendapatan: <%= @total %></h4>
+    
   <div>
   <form class="mt-2" action="/order" method="get">
     <div class="form-row mb-3">
@@ -20,14 +21,16 @@
     <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Num</th>
-        <th scope="col">Date</th>
-        <th scope="col">Status</th>
-        <th scope="col">Customer</th>
-        <th scope="col">Harga</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col" >Num</th>
+        <th scope="col" >Date</th>
+        <th scope="col" >Status</th>
+        <th scope="col" >Customer</th>
+        <th scope="col" >Harga</th>
+        <th scope="col" ></th>
+        <th scope="col" >    
+          <button type="button" class="btn btn-dark" data-toggle="modal" 
+            data-target="#exampleModal">Tutorial</button>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -61,3 +64,45 @@
   </div>
       
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cara menggunakan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Di halaman ini, Bapak/Ibu bisa mencari order di kolom pencarian</p>
+        <p>
+          Untuk kolom email, Bapak/Ibu bisa memasukkan emailnya tidak penuh.
+          Misalnya, emailku gigih@mantap.co.id. Berarti, pada kolom pencarian, 
+          cukup ditulis "gigih" saja. Jika ingin mencari gigih dan gilang, bisa 
+          masukkan "gi" saja. Nantinya, akan ada gigih dan gilang yang muncul 
+          (jika memang ada customernya). 
+        </p> 
+        <p>
+          Perlu diperhatikan bahwa total pendapatan berdasarkan daftar order yang
+          muncul, ya! Jika ingin melihat laporan harian, cari dengan kolom tanggal 
+          saja.
+        </p>  
+        <p>Terakhir! Untuk menambahkan detil order, harus ada order dulu. Maka, 
+          ketika order dibuat, detailnya kosong. Bapak/Ibu bisa menambahkan dengan
+          mengklik "Atur". Selamat mencoba!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })  
+</script>

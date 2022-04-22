@@ -16,12 +16,13 @@ class Food < ApplicationRecord
   end
 
   def add_categories(category_id_list)
-    if category_id_list.length() == 1
+    list = category_id_list.select {|c| c != "" } 
+    if list.length() == 0
       self.destroy
       raise Exception.new "No category error" 
     end
     
-    category_id_list.each do |cid|
+    list.each do |cid|
       fc = FoodCategory.find_by(food_id:self.id, category_id:cid)
       if fc == nil
         FoodCategory.create(food_id:self.id, category_id:cid)

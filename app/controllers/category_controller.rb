@@ -11,7 +11,7 @@ class CategoryController < ApplicationController
 
   def create
     count = Category.count
-    category = Category.create(cat_params)
+    @category = Category.create(cat_params)
     return render_invalid_request if count + 1 != Category.count
 
     redirect_to category_index_path
@@ -22,16 +22,16 @@ class CategoryController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:id])
-    category.update(cat_params)
+    @category = Category.find(params[:id])
+    @category.update(cat_params)
     
     redirect_to category_index_path
   end
 
   def delete
-    category = Category.find(params[:category_id])
-    category.delete_food_categories
-    category.destroy
+    @category = Category.find(params[:category_id])
+    @category.delete_food_categories
+    @category.destroy
     redirect_to category_index_path
   end
 

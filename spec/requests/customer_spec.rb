@@ -27,15 +27,43 @@ RSpec.describe "Customers", type: :request do
       end
     end
   end
-  
-  describe "POST" do
-    context "delete" do
-      it "deletes the customer from the database"  do
-        customer = create(:customer)
-        expect { 
-          post customer_delete_path(customer.id) 
-        }.to change(Customer, :count).by(-1)
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "saves the new customer in the database" do
+        expect{
+          post "/customer", params: { customer: attributes_for(:customer) }
+        }.to change(Customer, :count).by(1)
       end
+
+      it "redirects to customer#show" do
+        post "/customer", params: { customer: attributes_for(:customer) }
+        expect(response).to redirect_to customer_index_path
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not save the new customer in the database" do
+        expect{
+          post "/customer", params: { 
+            customer: attributes_for(:customer, email: "email@salah") }
+        }.not_to change(Customer, :count)
+      end
+      
+      it "returns status code 400" do
+        post "/order", params: { 
+            customer: attributes_for(:customer, email: "email@salah") }
+        expect(response).to have_http_status(400)
+      end
+    end
+  end
+  
+  describe "POST #delete" do
+    it "deletes the customer from the database"  do
+      customer = create(:customer)
+      expect { 
+        post customer_delete_path(customer.id) 
+      }.to change(Customer, :count).by(-1)
     end
   end
 
@@ -53,7 +81,8 @@ RSpec.describe "Customers", type: :request do
 
       it "changes @customer's attributes" do
         patch "/customer/#{@customer.id}", 
-        params: { customer: attributes_for(:customer, email: 'maria@gmail.com') }
+        params: { 
+          customer: attributes_for(:customer, email: 'maria@gmail.com') }
         @customer.reload
         expect(@customer.email).to eq('maria@gmail.com')
       end

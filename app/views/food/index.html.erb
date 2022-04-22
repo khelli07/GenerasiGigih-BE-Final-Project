@@ -1,6 +1,6 @@
 <div class="container-lg" style="margin-top:3%">
   <h1>Menu Warung Pak Gagah</h1>
-    <table class="table table-striped">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Num</th>
@@ -8,7 +8,10 @@
         <th scope="col">Price</th>
         <th scope="col"></th>
         <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">    
+          <button type="button" class="btn btn-dark" data-toggle="modal" 
+            data-target="#exampleModal">Tutorial</button>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -39,3 +42,32 @@
     <input class="btn btn-danger" type="submit" value="Back">
   </form>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cara menggunakan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Di halaman ini, Bapak / Ibu bisa menambahkan menu warung. <br>
+        Setiap makanan, harus ada satu kategori. 
+        Jadi, jika Bapak/Ibu tidak memasukkan, akan keluar error! Hati-hati, ya!
+        Oh iya, sama seperti halaman lain. Pastikan nama menunya unik ya! ;)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })  
+</script>

@@ -36,14 +36,45 @@ RSpec.describe "Foods", type: :request do
     end
   end
 
-  describe "POST" do  
-    context "delete" do
-      it "deletes the food from the database"  do
-        food = create(:food)
-        expect { 
-          post food_delete_path(food.id) 
-        }.to change(Food, :count).by(-1)
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "saves the new food in the database" do
+        ct = create(:category)
+        expect{
+          post "/food", params: { name: "Tumis Tauge", 
+          price: 10000, categories: ["", "1"]}
+        }.to change(Food, :count).by(1)
       end
+
+      it "redirects to food#index" do
+        post "/food", params: { name: "Tumis Tauge", 
+          price: 10000, categories: ["", "1"]}
+        expect(response).to redirect_to food_index_path
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not save the new food in the database" do
+        expect{
+          post "/food", params: { 
+            food: attributes_for(:food, name: "") }
+        }.not_to change(Food, :count)
+      end
+ 
+      it "return 400 status code" do
+        post "/food", params: { 
+            food: attributes_for(:food, name: "") }
+        expect(response).to have_http_status(400)
+      end
+    end
+  end
+
+  describe "POST #delete" do  
+    it "deletes the food from the database"  do
+      food = create(:food)
+      expect { 
+        post food_delete_path(food.id) 
+      }.to change(Food, :count).by(-1)
     end
   end
 
