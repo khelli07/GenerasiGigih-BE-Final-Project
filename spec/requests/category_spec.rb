@@ -36,7 +36,7 @@ RSpec.describe "Categories", type: :request do
         }.to change(Category, :count).by(1)
       end
 
-      it "redirects to foods#show" do
+      it "redirects to category#index" do
         post "/category", params: { category: attributes_for(:category) }
         expect(response).to redirect_to category_index_path
       end

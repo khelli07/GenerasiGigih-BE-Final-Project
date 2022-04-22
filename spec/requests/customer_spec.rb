@@ -36,7 +36,7 @@ RSpec.describe "Customers", type: :request do
         }.to change(Customer, :count).by(1)
       end
 
-      it "redirects to customer#show" do
+      it "redirects to customer#index" do
         post "/customer", params: { customer: attributes_for(:customer) }
         expect(response).to redirect_to customer_index_path
       end

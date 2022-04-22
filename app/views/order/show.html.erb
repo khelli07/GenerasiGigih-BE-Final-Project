@@ -1,6 +1,14 @@
 <div class="container-lg" style="margin-top:3%">
+  <div class="row">
+  <div class="col-3">
   <h1>Order ke-<%= @order.id %></h1>
   <h4 class="mb-3">Total harga: <%= @order.total_price %></h4>
+  </div>
+  <form class="col" action="/order/<%= @order.id %>/edit" method="get">
+    <input class="btn btn-primary mt-4" type="submit" value="Edit Order">
+  </form>
+  </div>
+  
     <table class="table table-striped">
     <thead>
       <tr>

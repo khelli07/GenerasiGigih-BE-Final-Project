@@ -68,4 +68,32 @@ RSpec.describe "Orders", type: :request do
       expect{ post order_delete_path(order.id) }.to change(Order, :count).by(-1)
     end
   end
+
+  describe 'PATCH #update' do
+    before :each do
+      @customer = FactoryBot.create(:customer)
+      @order = FactoryBot.create(:order)
+    end
+
+    context "with valid attributes" do
+      it "locates the requested @order" do
+        patch "/order/#{@order.id}", 
+        params: { order: attributes_for(:order) }
+        expect(assigns(:order)).to eq(@order)
+      end
+
+      it "changes @order's attributes" do
+        patch "/order/#{@order.id}", 
+        params: { cid: @order.customer_id, status: 2 }
+        @order.reload
+        expect(@order.status).to eq(2)
+      end
+
+      it "redirect to order index path" do
+        patch "/order/#{@order.id}", 
+        params: { order: attributes_for(:order) }
+        expect(response).to redirect_to order_index_path
+      end
+    end
+  end
 end

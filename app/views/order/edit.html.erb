@@ -1,18 +1,12 @@
 <div class="container" style="margin-top:13%; width:50%">
-  <h2 class="mb-3">Buat Order Baru</h2>
-  <%= form_with(url: order_index_path) do |form| %>
-  <div class="form-row mb-3">
-    <div class="col">
-    <label>Time</label>
-    <% t = Time.now.in_time_zone("Asia/Jakarta") %>
-    <%= form.text_field :time, class: "form-control", value: t.strftime("%Y-%m-%d %H:%M:%S") %>
-    </div>
-  </div>
-      
-  <div class="form-row mb-3">
+  <h2 class="mb-3">Editing Order ke-<%= @order.id %></h2>
+  <%= form_with(model: @order, url: order_path(@order.id)) do |form| %>
+   <div class="form-row mb-3">
+    
     <div class="col">
     <label>Customer</label>
     <select name="cid" class="form-control">
+      <option value="<%= @order.customer_id %>"><%= @order.customer_email %></option>
       <%= @customers.each do |c| %>
       <option value="<%= c.id %>"><%= c.email %></option>
       <% end %>
@@ -28,12 +22,7 @@
     </select>
     </div>
   </div>
-
-  <input type="hidden" name="total_price" value="0">
+    
   <input class="btn btn-success" type="submit" value="Selesai">
   <% end %>
-
-  <form class="mt-2" action="/order" method="get">
-    <input class="btn btn-danger" type="submit" value="Back">
-  </form>
 </div>

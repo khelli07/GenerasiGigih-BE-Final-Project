@@ -3,7 +3,9 @@ class OrderController < ApplicationController
   
   def index
     @orders = query(params[:email], params[:order_date])
-    @total = (@orders.map {|o| o.calculate_price; }).sum
+
+    filtered =  @orders.select {|o| o.status == 1 } 
+    @total = (filtered.map {|o| o.calculate_price; }).sum
     @orders.each do |o|
       update_order(o) 
     end
@@ -18,6 +20,21 @@ class OrderController < ApplicationController
   def new
     @order = Order.all
     @customers = Customer.all
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+    @customers = Customer.all
+  end
+  
+  def update
+    @order = Order.find(params[:id])
+    update_order(@order)
+    @order.update(customer_id: params[:cid], 
+      status: params[:status]
+    )
+    
+    redirect_to order_index_path
   end
 
   def create
@@ -42,7 +59,7 @@ class OrderController < ApplicationController
     redirect_to order_index_path
   end
 
-  private
+  private 
   def update_order(order)
     order.update(total_price: order.calculate_price)
     if (order.order_date.strftime("%H").to_i >= 17 and order.status != 1)
