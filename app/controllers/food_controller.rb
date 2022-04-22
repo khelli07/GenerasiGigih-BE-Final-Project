@@ -15,14 +15,15 @@ class FoodController < ApplicationController
   end
 
   def create
-    categories = params[:categories]
-    return render_invalid_request if (categories.length() == 1)
-
     count = Food.count
-    @food = Food.create(name: params[:name], price:params[:price])
+    begin
+      @food = Food.create(name: params[:name], price:params[:price])
+      @food.add_categories(params[:categories])
+    rescue Exception => e
+      return render_invalid_request 
+    end
+    
     return render_invalid_request if count + 1 != Food.count
-  
-    @food.add_categories(categories)
     return redirect_to food_index_path
   end
 

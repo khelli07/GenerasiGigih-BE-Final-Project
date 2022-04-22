@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :order do
     get 'new', to: 'order#new'
     post 'delete', to: 'order#delete'
+    post 'query', to: 'order#query'
   
     resources :order_detail do
       get 'edit', to: 'order_detail#edit'

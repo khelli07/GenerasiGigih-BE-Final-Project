@@ -1,6 +1,22 @@
 <div class="container-lg" style="margin-top:3%">
   <h1>Pesanan Warung Pak Gagah</h1>
   <h4 class="mb-3">Total pendapatan: <%= @total %></h4>
+  <div>
+  <form class="mt-2" action="/order" method="get">
+    <div class="form-row mb-3">
+      <div class="col">
+        <input type="text" class="form-control" name="email"><br>
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" name="order_date">
+      </div>
+      <div class="col">
+        <input class="btn btn-success" type="submit" value="Search">
+      </div>
+  </form>
+  </div>
+  
+  <div>
     <table class="table table-striped">
     <thead>
       <tr>
@@ -36,10 +52,12 @@
     <% end %>
     </tbody>
   </table>
-  <form action="/order/new" method="get">
-    <input class="btn btn-success" type="submit" value="Tambahkan order">
-  </form>
-  <form class="mt-2" action="/" method="get">
-    <input class="btn btn-danger" type="submit" value="Back">
-  </form>
+    <form action="/order/new" method="get">
+      <input class="btn btn-success" type="submit" value="Tambahkan order">
+    </form>
+    <form class="mt-2" action="/" method="get">
+      <input class="btn btn-danger" type="submit" value="Back">
+    </form>
+  </div>
+      
 </div>

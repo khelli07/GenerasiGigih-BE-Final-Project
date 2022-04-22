@@ -2,7 +2,7 @@ class OrderController < ApplicationController
   protect_from_forgery
   
   def index
-    @orders = Order.order(:status).all
+    @orders = query(params[:email], params[:order_date])
     @total = (@orders.map {|o| o.calculate_price; }).sum
     @orders.each do |o|
       update_order(o) 
@@ -47,4 +47,35 @@ class OrderController < ApplicationController
       order.update(status: 0)
     end
   end
+
+  def query(param_email, param_date)
+    if ((param_email == nil and param_date == nil) or (param_email == "" and param_date == ""))
+      return Order.order(:status).all
+    end
+    
+    email = "%" + param_email + "%"
+    customer = Customer.select(:id).where("email like ?", email)
+    
+    starts = ""; ends = ""
+    if (param_date != nil and param_date != "")
+      param_date = Date.parse(param_date)
+      starts = param_date.beginning_of_day
+      ends = param_date.end_of_day
+    end
+    
+    if (customer.length() == 1)
+      id = "%" + customer[0].id.to_s + "%"
+      order = (Order.order(:status)
+        .where(
+          "customer_id like ? or 
+          created_at BETWEEN ? AND ?", 
+          id, starts, ends))
+    else
+      order = (Order.order(:status).where("created_at BETWEEN ? AND ?",   
+         starts, ends))
+    end
+    
+    return order
+  end
+  
 end
