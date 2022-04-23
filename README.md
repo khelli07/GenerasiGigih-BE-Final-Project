@@ -5,11 +5,12 @@ Generasi GIGIH is a 4-month bootcamp program held by YABB (Yayasan Anak Bangsa B
 Time given to finish: 10 days.
 
 ## Table of Contents
-1. [ Requirements ](#Requirements)
-2. [ Project Problem Statement ](#Project-Problem-Statement)
-3. [ User Story Mapping ](#User-Story-Mapping)
-4. [ What Could be Improved ](#What-Could-be-Improved)
-4. [ Acknowledgement ](#Acknowledgement)
+- [ Requirements ](#Requirements)
+- [ Project Problem Statement ](#Project-Problem-Statement)
+- [ User Story Mapping ](#User-Story-Mapping)
+- [ What Could be Improved ](#What-Could-be-Improved)
+- [ List of All Endpoints ](#List-of-All-Endpoints)
+- [ Acknowledgement ](#Acknowledgement)
 
 ## Requirements
 1. Ruby v3.0.3
@@ -78,6 +79,27 @@ Here are some thing that I am having difficulties when implementing, but if impl
 2. Adding food categories automatically when passed using indexing and join table. 
 3. From point 2, Having validated whether or not the food has categories (food should at least have one category) inside the food itself. Not managed by controller (my current implementation).
 4. Custom error page.
+
+## List of All Endpoints
+
+- "/" (GET) landing page
+- "/food" (GET) food index page
+- "/food/:id" (GET) food show page
+- "/food/:id/edit" (GET) food edit page
+- "/food/new" (GET) new food page
+- "/food/:id/delete" (POST) food delete
+- "/food" (POST) create new food
+- "/food/:id" (PATCH) update food
+
+All other pages: just change "food" to "category", "customer", or "order". For order details, the pages are:
+
+- "/order/:order_id/order_detail/:order_detail_id/edit" (GET) order detail edit page
+- "/order/:order_id/order_detail/:order_detail_id/new" (GET) order detail new page
+- "/order/:order_id/order_detail" (POST) create order detail 
+- "/order/:order_id/order_detail/:id" (PATCH) update order detail 
+- "/order/:order_id/order_detail/:order_detail_id/delete" (POST) delete order detail
+
+To see all details in an order, just visit "/order/:order_id" (GET).
 
 ## Acknowledgement
 
