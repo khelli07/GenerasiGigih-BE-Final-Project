@@ -106,4 +106,4 @@ To see all details in an order, just visit "/order/:order_id" (GET).
 I would like to thank my class instructors: Rahul Goel, Fauzi Fadhlurrohman, Zahrah Ayu Afifah Febriani, Abhishek Patel, Saptanto Sindu Kuncoro Utomo, and the one and only Iqbal Farabi (a.k.a Insinyur Online)!
 
 <hr>
-Made with 💖 by Maria Khelli
+Made with 💖 by Maria Khelli 
