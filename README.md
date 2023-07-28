@@ -6,8 +6,13 @@ Time given to finish: 10 days.
 
 ## Preview
 
-![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/fb10da84-f443-4b20-beb2-019c656d53d6)
+![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/ba4a1500-d886-4ac3-a458-c40942bdf1d0)
 
+![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/2c38ecdb-7a29-4702-8a8c-f74ba1561987)
+
+![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/d69a6c8b-196e-423a-8daf-7b785beb41e8)
+
+![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/7a9f2208-febb-4708-9678-4cc7b39324e6)
 
 ## Table of Contents
 - [ Requirements ](#Requirements)
