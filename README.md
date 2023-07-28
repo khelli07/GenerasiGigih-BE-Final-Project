@@ -4,6 +4,11 @@ Generasi GIGIH is a 4-month bootcamp program held by YABB (Yayasan Anak Bangsa B
 
 Time given to finish: 10 days.
 
+## Preview
+
+![image](https://github.com/khelli07/GenerasiGigih-BE-Final-Project/assets/71018093/fb10da84-f443-4b20-beb2-019c656d53d6)
+
+
 ## Table of Contents
 - [ Requirements ](#Requirements)
 - [ Project Problem Statement ](#Project-Problem-Statement)
