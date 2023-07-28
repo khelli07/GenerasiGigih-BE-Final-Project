@@ -1,6 +1,6 @@
 # Generasi GIGIH - Backend Engineering Track Final Project
 
-Generasi GIGIH is a 4-month bootcamp program held by YABB (Yayasan Anak Bangsa Bisa) by Gojek & Tokopedia. There are other tracks such as data analysis and frontend engineer. This is my final project for BE track. Main tech stack for this project is **Ruby on Rails**.
+Generasi GIGIH is a 4-month bootcamp program held by YABB (Yayasan Anak Bangsa Bisa) by Gojek & Tokopedia. There are other tracks such as data analysis and frontend engineer. This is my final project for BE track. Main tech stack for this project is **Ruby on Rails**. I don't turn off my Repl.it, feel free to visit it [here](https://gigih-family-catering-khelli07.gojek22.repl.co/).
 
 Time given to finish: 10 days.
 
